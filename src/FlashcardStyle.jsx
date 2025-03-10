@@ -1,46 +1,82 @@
 import styled from "styled-components";
 
 const FlashcardStyle = styled.div`
-.flashcard {
-  width: 200px;
-  height: 150px;
-  perspective: 1000px; /* Adds depth for 3D effect */
-  cursor: pointer;
-}
+  .flashcard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
 
-.flashcard-inner {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.6s;
-}
+  .flashcard {
+    font-family: Recursive;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    perspective: 1000px;
+    width: 300px;
+    height: 150px;
+    position: relative;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.flashcard.flipped .flashcard-inner {
-  transform: rotateY(180deg);
-}
+  .flashcard-inner {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+    transform-origin: center center;
+  }
 
-.flashcard-front,
-.flashcard-back {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  backface-visibility: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background-color: white;
-  padding: 10px;
-}
+  .flipped .flashcard-inner {
+    transform: rotateY(180deg);
+  }
 
-.flashcard-back {
-  transform: rotateY(180deg);
-  background-color: #f8f9fa;
-}
+  .flashcard-front,
+  .flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%; 
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: white;
+    text-align: center;
+    box-sizing: border-box;
+  }
 
-`
+  .flashcard-back {
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
 
-export default FlashcardStyle
+  .buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 8px;
+  }
+`;
+
+export default FlashcardStyle;

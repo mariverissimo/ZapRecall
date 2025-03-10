@@ -1,13 +1,8 @@
-import styled from "styled-components";
-export default function ZapButton(){
+import Zap from "./ZapButtonStyle";
+export default function ZapButton({onClick}){
     return(
-        <Zap>
-            Zap!
+        <Zap onClick={onClick}>
+                Zap!               
         </Zap>
     );
 }
-
-const Zap = styled.button`
-    background: #2FBE34;
-    color: #FFFFFF;
-`;

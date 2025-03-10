@@ -1,4 +1,3 @@
-import FlashcardStyle from "./FlashcardStyle";
 import Flashcard from "./Flashcard";
 const flashcards = [
     { id: 1, front: "O que é JSX?", back: "Uma extensão de linguagem do JavaScript" },
@@ -12,13 +11,11 @@ const flashcards = [
   ];
   const FlashcardList = () => {
     return (
-      <FlashcardStyle>
-        <div className="flashcard-list">
-          {flashcards.map((card) => (
-            <Flashcard key={card.id} front={card.front} back={card.back} />
+        <div className="flashcard-container">
+          {flashcards.map((card, index) => (
+            <Flashcard key={card.id} number={index + 1} front={card.front} back={card.back} />
           ))}
         </div>
-      </FlashcardStyle>
     );
   };
 

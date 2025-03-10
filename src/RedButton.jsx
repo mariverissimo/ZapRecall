@@ -1,13 +1,9 @@
-import styled from "styled-components";
-export default function RedButton(){
+import Red from "./RedButtonStyle";
+export default function RedButton({onClick}){
+    
     return(
-        <Red>
+        <Red onClick={onClick}>
             Não lembrei
         </Red>
     );
 }
-
-const Red = styled.button`
-    background: #FF3030;
-    color: #FFFFFF;
-`;
