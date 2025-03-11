@@ -1,4 +1,5 @@
 import Flashcard from "./Flashcard";
+import FlashcardStyle from "./FlashcardStyle";
 const flashcards = [
     { id: 1, front: "O que é JSX?", back: "Uma extensão de linguagem do JavaScript" },
     { id: 2, front: "O React é __", back: "Uma biblioteca JavaScript para construção de interfaces" },
@@ -9,13 +10,15 @@ const flashcards = [
     { id: 7, front: "Usamos props para __", back: "Passar diferentes informações para componentes" },
     { id: 8, front: "Usamos estado (state) para __", back: "Dizer para o React quais informações quando atualizadas devem renderizar a tela novamente" },
   ];
-  const FlashcardList = () => {
+  const FlashcardList = ({ onAnswer }) => {
     return (
-        <div className="flashcard-container">
+       <FlashcardStyle>
+         <div className="flashcard-container">
           {flashcards.map((card, index) => (
-            <Flashcard key={card.id} number={index + 1} front={card.front} back={card.back} />
+            <Flashcard key={card.id} number={index + 1} front={card.front} back={card.back} onAnswer={onAnswer} />
           ))}
         </div>
+       </FlashcardStyle>
     );
   };
 

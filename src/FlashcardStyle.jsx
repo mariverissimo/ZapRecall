@@ -6,7 +6,11 @@ const FlashcardStyle = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    gap: 20px; /* Adds spacing dynamically */
+    width: 100vw;
+    margin-bottom: 10%;
+    overflow-y: scroll;
+    max-height: 30%;
   }
 
   .flashcard {
@@ -17,12 +21,14 @@ const FlashcardStyle = styled.div`
     letter-spacing: 0%;
     perspective: 1000px;
     width: 300px;
-    height: 150px;
+    height: ${(props) => (props.answered ? "70px" : props.flipped ? "131px" : "70px")};
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 8%;
     display: flex;
+    background-color: white;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
   }
 
   .flashcard-inner {
@@ -34,16 +40,13 @@ const FlashcardStyle = styled.div`
     transform-origin: center center;
   }
 
-  .flipped .flashcard-inner {
-    transform: rotateY(180deg);
-  }
+
 
   .flashcard-front,
   .flashcard-back {
     position: absolute;
     width: 100%;
     height: 100%; 
-    backface-visibility: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -51,13 +54,24 @@ const FlashcardStyle = styled.div`
     border: 1px solid #ccc;
     border-radius: 10px;
     padding: 10px;
-    background-color: white;
+    background-color: #FFFFD4;
     text-align: center;
     box-sizing: border-box;
   }
+  
+  .turn{
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+  }
+
+  .play{
+    position: absolute;
+    bottom: 25%;
+    right: 3%;
+  }
 
   .flashcard-back {
-    transform: rotateY(180deg);
     display: flex;
     flex-direction: column;
     justify-content: center;

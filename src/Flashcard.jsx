@@ -10,12 +10,15 @@ import RedButton from "./RedButton";
 import YellowButton from "./YellowButton";
 import ZapButton from "./ZapButton";
 
-export default function Flashcard({ front, back, number }) {
-  const [stage, setStage] = useState("hidden"); // Tracks if the card is hidden or showing question/answer
-  const [status, setStatus] = useState(null); // Tracks user's answer status (incorrect, effort, correct)
+export default function Flashcard({ front, back, number, onAnswer }) {
+  const [stage, setStage] = useState("hidden"); 
+  const [status, setStatus] = useState(null);
+  const [flipped, setFlipped] = useState(false);
+  const [answered, setAnswered] = useState(false);
 
   const handleShowQuestion = () => {
     if (!status) {
+      setFlipped(!flipped);
       setStage("question");
     }
   };
@@ -25,8 +28,12 @@ export default function Flashcard({ front, back, number }) {
   };
 
   const handleAnswer = (choice) => {
-    setStatus(choice);
-    setStage("answered");
+    if (!status) {
+      setStatus(choice);
+      setStage("answered");
+      setAnswered(!answered);
+      onAnswer();
+    }
   };
 
   const getStatusStyles = () => {
@@ -56,25 +63,27 @@ export default function Flashcard({ front, back, number }) {
   };
 
   return (
-    <FlashcardStyle>
-      <div className="flashcard">
+    <FlashcardStyle flipped={flipped} answered={answered}>
+      <div className={`flashcard ${flipped ? "flipped" : ""}`}>
         <div className="flashcard-inner">
           {status ? (
-            <div className="flashcard-front" style={getStatusStyles()}>
+            <div className="flashcard" style={getStatusStyles()}>
               <span>Pergunta {number}</span>
               {getStatusIcon()}
             </div>
           ) : stage === "hidden" ? (
-            <div className="flashcard-front" onClick={handleShowQuestion}>
+            <div className="flashcard" onClick={handleShowQuestion}>
               <div>
                 <span>Pergunta {number}</span>
+                <button className="play">
                 <img src={play} alt="Click to reveal question" className="icon" />
+                </button>
               </div>
             </div>
           ) : stage === "question" ? (
             <div className="flashcard-front">
               <p>{front}</p>
-              <button onClick={handleFlip}>
+              <button className="turn" onClick={handleFlip}>
                 <img src={turn} alt="Flip card" />
               </button>
             </div>

@@ -1,7 +1,10 @@
-export default function Footer() {
+import FooterStyle from "./FooterStyle"
+export default function Footer({ answeredCount }) {
     return(
-        <div>
-            
-        </div>
+       <FooterStyle>
+         <div className= "footer-container">
+         <p>{answeredCount}/8 CONCLUÍDOS</p>
+         </div>
+       </FooterStyle>
     )
 }
